@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="style.css">
+        <style>
+            .slide{
+                display: none;
+                opacity: 0%;
+            }
+            #button{
+                width: 3em;
+                height: 3em;
+                border: 3px solid gray;
+                border-radius: 1em;
+                text-align: center;
+                background-color: black;
+
+                transition: all 0.2s ease;
+            }
+            #button p {
+                margin: 25%;
+            }
+            #button:hover{
+                background-color: #006eff;
+            }
+            @keyframes unfade {
+                0%{opacity: 0%;}
+                100%{opacity: 100%;}
+            }
+            
+            @keyframes fade {
+                0%{opacity: 100%;}
+                100%{opacity: 0%;}
+            }
+        </style>
+    </head>
+    <body>
+        <nav>
+            <div id="icon">
+                <div id="bar"></div>
+                <div id="bar"></div>
+                <div id="bar"></div>
+            </div>
+            
+            <a href="index.html">H</a>
+            <a href="personal_website_1.html">1</a>
+            <a href="personal_website_2.html">2</a>
+            <a href="personal_website_3.html">3</a>
+            <a href="personal_website_4.html">4</a>
+            <a href="personal_website_5.html" class="active">5</a>
+        </nav>
+        <div id="main-wrapper">
+            <h1>PAGE 5</h1>
+            <div id="sub-wrapper">
+                <h3>Here's a bunch of random things I made when I was bored.</h3>
+                <p>Why, you ask? Why not?</p>
+                <img class="slide" src="images/Icons/OG.png">
+                <img class="slide" src="images/Icons/Overseer.png">
+                <img class="slide" src="images/Icons/Amethyst.png">
+                <img class="slide" src="images/Icons/Radioactive.png">
+                <img class="slide" src="images/Icons/Darkmode/Midnight.png">
+                <img class="slide" src="images/Icons/Darkmode/Sillhouette.png">
+                <img class="slide" src="images/Icons/Darkmode/Edge.png">
+                <img class="slide" src="images/Icons/Minimalist.PNG">
+                
+                <p>And yes, that one with an actual gradient was made with CSS Box Shadows, because I cannot paint gradients for the life of me.</p>
+
+                <div style="margin: 2.5%; display: flex; width: 95%; justify-content: space-around; align-items: center;">
+                    <div id="button" onclick="back()"><p>&#10094;</p></div>
+                    <div id="button" onclick="next()"><p>&#10095;</p></div>
+                </div>
+            </div>
+            <script>
+                var cur = 0;
+                var slides = document.getElementsByClassName("slide");
+                showSlide(cur);
+                function showSlide(num){
+                    slides[num].style.display = "block";
+                    slides[num].style.animation = "unfade 1s forwards";
+                }
+                function hideSlide(num){
+                    slides[num].style.animation = "fade 1s forwards";
+                    setTimeout(function(){clear(num);}, 1000);
+                }
+                function clear(num){
+                    slides[num].style.display = "none";
+                }
+                function check(num){
+                    return (num+8)%8;
+                }
+                function back(){
+                    hideSlide(cur);
+                    cur = check(cur-1);
+                    setTimeout(function(){showSlide(cur);}, 1000);
+                }
+                function next(){
+                    hideSlide(cur);
+                    cur = check(cur+1);
+                    setTimeout(function(){showSlide(cur);}, 1000);
+                }
+            </script>
+        </div>    
+    </body>
+</html>
